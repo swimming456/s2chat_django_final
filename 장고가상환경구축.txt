@@ -1,0 +1,86 @@
+호준 리눅스컴퓨터 IP : 192.168.0.92
+
+https://databoom.tistory.com/entry/conda%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-python-%EB%B2%84%EC%A0%84-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0
+
+1. conda 버전 확인 및 업데이트
+conda --version
+
+2. conda 가상환경
+-- 사용가능한 파이썬 버전 확인
+conda serch python
+-- 가상환경 생성
+conda create -n <가상환경이름> python=3.10
+-- ex) conda create -n py310 python=3.10
+-- 가상환경 목록 확인
+conda env list
+-- 가상환경 이동
+conda activate <가상환경이름>
+-- ex) conda activate py310
+-- 가상환경에서 나오기
+conda deactivate
+
+3. 장고프로젝트에서 사용된 모듈 설치
+-- 버전/의존성 충돌 오류 발생할 수 있으니 오류 로그 검색해가면서 환경 구성
+
+-- ffmpeg  설치
+-- 1. linux 환경
+sudo apt update
+sudo apt install ffmpeg
+-- 설치 확인
+ffmpeg -version 
+-- ffmpeg 경로 확인
+which ffmpeg 
+-- 환경변수 설정
+nano ~/.bashrc (또는 vim ~/.bashrc)
+-- nano 편집기 명령어 : 붙여넣기 shift+insert, 저장하기 shift+O > enter, 나가기 shift+X
+-- 파일의 마지막줄, ffmpeg 경로 넣기
+export PATH=$PATH:/bin 
+--적용
+source ~/.bashrc 
+-- source 명령어 적용 후 conda 가상환경 확인
+
+-- 2. 윈도우 환경
+https://cafe.naver.com/ictstudy2024/763
+
+
+-- 장고 프로젝트에 필요한 공통 모듈 설치 
+-- (다운로드 진행하다가 버전 충돌이 일어날 수 있음. 오류 로그 보면서 허용되는 버전이 어떤건지 확인 필요)
+pip install django
+
+git clone https://github.com/ultralytics/yolov5.git
+pip install -r yolov5/requirements.txt
+pip install git+https://git@github.com/SKTBrain/KoBERT.git@master
+pip install -r requirements.txt
+
+pip install django-cors-headers
+
+pip install pytesseract
+pip install opencv
+pip install opencv-python
+pip install tensorflow==2.17.0
+pip install pandas
+pip install scikit-learn
+pip install torch
+pip install transformers
+pip install tf-keras
+pip install librosa
+pip install google-cloud-speech
+pip install matplotlib
+pip install openai
+pip install konlpy
+pip install wordcloud
+pip install google-cloud-vision
+pip install pydub
+pip install mediapipe
+
+
+
+
+
+------- 경로확인 -------
+pythonProject/simulation/views.py
+-> 194번 라인 MODEL_PATH 를 지금 실행하고 있는 경로로 수정
+
+pythonProject/htp/views.py
+-> 22번 라인 sys.path.append 를 지금 실행하고 있는 경로로 수정
+
